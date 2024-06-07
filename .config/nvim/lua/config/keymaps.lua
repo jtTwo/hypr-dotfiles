@@ -17,3 +17,6 @@ map("n", "<S-w>", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
 
 -- windows
 map("n", "<leader>+", "<C-W>v", { desc = "Split Window Right", remap = true })
+
+-- comment line
+map("n", "<C-7>", "<cmd>normal gcc<cr>", { desc = "Comment/Uncomment" })
