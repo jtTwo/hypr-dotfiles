@@ -4,6 +4,6 @@
 killall waybar
 waybar &
 
-# ags restart
-#killall ags
-#ags &
+ags restart
+killall ags
+ags &
