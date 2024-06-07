@@ -1,18 +1,15 @@
-# Media Widget
 
-setup
+# Starter Config
 
-```bash
-mkdir -p ~/.config/ags
-git clone https://github.com/Aylur/ags.git /tmp/ags
-cp -r /tmp/ags/example/media-widget/* ~/.config/ags
+if suggestions don't work, first make sure
+you have TypeScript LSP working in your editor
 
-# optionally setup types
-ags --init -c ~/.config/ags/config.js
+if you do not want typechecking only suggestions
+
+```json
+// tsconfig.json
+"checkJs": false
 ```
 
-running
-
-```bash
-ags -c ~/.config/ags/config.js &
-```
+types are symlinked to:
+/usr/share/com.github.Aylur.ags/types
