@@ -1,7 +1,29 @@
 // import { Media } from "./Media.js"
 
-const win = Widget.Window({
-  name: "mpris",
-  anchor: ["top", "right", "bottom"],
-  child: Media(),
+const notificationWidget = Widget.Calendar({
+
 })
+
+const calendarWidget = Widget.Box({
+  children: [
+    Widget.Calendar({
+      className: "calendar",
+    }),
+  ]
+})
+const container = Widget.Box({
+  vertical: true,
+  children: [
+    notificationWidget,
+    Widget.Separator({}),
+    calendarWidget,
+  ],
+})
+
+const windowCalendar = Widget.Window({
+  name: "dashboard",
+  anchor: ["top", "right", "bottom"],
+  child: container,
+})
+
+export { windowCalendar }
