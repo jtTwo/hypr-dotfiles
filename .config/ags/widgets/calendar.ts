@@ -15,12 +15,15 @@ const container = Widget.Box({
   vertical: true,
   children: [
     notificationWidget,
-    Widget.Separator({}),
+    Widget.Separator({
+      css: "margin: 20px;"
+    }),
     calendarWidget,
   ],
 })
 
 const windowCalendar = Widget.Window({
+  margins: [12],
   name: "dashboard",
   anchor: ["top", "right", "bottom"],
   child: container,
