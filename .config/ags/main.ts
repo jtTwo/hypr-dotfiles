@@ -1,5 +1,18 @@
 import { windowCalendar } from "./widgets/calendar"
 
+// Notification generator code 
+
+for (let i = 0; i < 2; i++)
+  Utils.timeout(100, () => Utils.notify({
+    summary: "NotificationPopup Ex",
+    iconName: "user-trash-full-symbolic",
+    body: "Lorem ipsum dolor sit amet, qui minim labore adipisicing "
+      + "minim sint cillum sint consectetur cupidatat.",
+    actions: {
+      "Cool": () => print("pressed Cool"),
+    },
+  }))
+
 const time = Variable('', {
   poll: [1000, function () {
     return Date().toString();

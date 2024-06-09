@@ -1,4 +1,7 @@
 // import { Media } from "./Media.js"
+// import notifications from ""
+import notificationColumn from "widgets/notifications"
+
 
 const notificationWidget = Widget.Calendar({
 
@@ -14,9 +17,9 @@ const calendarWidget = Widget.Box({
 const container = Widget.Box({
   vertical: true,
   children: [
-    notificationWidget,
+    notificationColumn(),
     Widget.Separator({
-      css: "margin: 20px;"
+      css: "margin: 20px;",
     }),
     calendarWidget,
   ],
