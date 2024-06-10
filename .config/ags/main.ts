@@ -1,4 +1,5 @@
 import { windowCalendar } from "./widgets/calendar"
+import { time } from "lib/variables"
 
 // Notification generator code 
 
@@ -12,12 +13,6 @@ for (let i = 0; i < 2; i++)
       "Cool": () => print("pressed Cool"),
     },
   }))
-
-const time = Variable('', {
-  poll: [1000, function () {
-    return Date().toString();
-  }],
-});
 
 const Bar = (monitor: number) => Widget.Window({
   monitor,
