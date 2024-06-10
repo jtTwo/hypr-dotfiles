@@ -1,5 +1,5 @@
 -- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+-- Default keymaps that are set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
 local map = vim.keymap.set
@@ -20,3 +20,7 @@ map("n", "<leader>+", "<C-W>v", { desc = "Split Window Right", remap = true })
 
 -- comment line
 map("n", "<C-7>", "<cmd>normal gcc<cr>", { desc = "Comment/Uncomment" })
+map("v", "<C-7>", "<cmd>normal gc<cr>", { desc = "Comment/Uncomment multiline" })
+
+-- control erase
+map("i", "<C-BS>", "<bs><cmd>normal db<cr>", { desc = "Delete word in insert mode" })
