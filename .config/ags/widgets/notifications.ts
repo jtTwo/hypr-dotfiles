@@ -51,6 +51,9 @@ function NotificationIcon({ app_entry, app_icon, image }: Notification) {
 //*** notification structure
 
 const notification = (Notification: Notification) => Widget.Box({
+  // NAME identifiers for any mapped widget (just debugging )
+  name: `my id ${Notification.id}`,
+  // className: `my class ${Notification.id}`,
   children: [
     NotificationIcon(Notification),
     Widget.Box({
@@ -86,17 +89,47 @@ const notification = (Notification: Notification) => Widget.Box({
 
 //*** notification list
 
-const notificationList = () => Widget.Box({
-  vertical: true,
-  children: notifications.notifications.map(n => notification(n))
-  //check the changes on the notifications service to return a list of widget notifications
-})
-  .hook(notifications, (self, id: number) => {
-    console.log(self, id)
-  }, "notified")
+const notificationList = () => {
+  // creating map that maps the id of the notification with its widget itself
+  const map: Map<number, ReturnType<typeof notification>> = new Map
 
+  const widgetNotifBox = Widget.Box({
+    vertical: true,
+    children: notifications.notifications.map(n => {
+      const _notification = notification(n)
+      map.set(n.id, _notification)
+      return _notification
+    })
+    //check the changes on the notifications service to return a list of widget notifications
+  })
+
+  function remove(self: unknown, id: number) {
+    const _notification = map.get(id)
+    if (_notification) {
+      // n.reveal_child = false
+      Utils.timeout(200, () => {
+        n.destroy()
+        map.delete(id)
+      })
+    }
+  }
+
+  return widgetNotifBox
+    .hook(notifications, (self, id: number) => remove(self, id), "closed")
+    .hook(notifications, (self, id: number) => {
+      if (id !== undefined) {
+        if (map.has(id))
+          console.log(map.get(id).name)
+        // console.log(true)
+        // console.log(self, id)
+        // remove(null, id)
+      }
+      // console.log(id)
+    }, "notified")
+}
+
+//hook expample
 const { speaker } = await Service.import("audio")
-
 // .hook(GObject, callback, signal?)
 const batteryPercent = Widget.Label().hook(speaker, self => {
   self.label = `${speaker.volume}%`

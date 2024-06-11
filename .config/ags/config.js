@@ -17,5 +17,3 @@ try {
     	console.error(error)
     	App.quit()
 }
-
-export { }
