@@ -1,6 +1,6 @@
 // import { Media } from "./Media.js"
 // import notifications from ""
-import notificationColumn from "widgets/notifications"
+import notificationColumn from "widgets/notificationsBindings"
 
 
 const notificationWidget = Widget.Calendar({
