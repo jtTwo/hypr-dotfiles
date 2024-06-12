@@ -70,7 +70,10 @@ const notification = (Notification: Notification) => Widget.Box({
             }),
             Widget.Button({
               child: Widget.Icon("window-close-symbolic"),
-              on_clicked: Notification.close
+              on_clicked: () => {
+                Utils.timeout(50, () => Notification.close())
+                // Notification.close
+              }
             }),
           ]
         }),
@@ -112,6 +115,7 @@ const notification = (Notification: Notification) => Widget.Box({
 
 const notificationList3 = Widget.Box({ vertical: true }).hook(notifications, (self) => {
   self.children = notifications.notifications.map(_notification => notification(_notification))
+  console.log(self.children.length, notifications.notifications.length)
 },)
 
 //hook expample
