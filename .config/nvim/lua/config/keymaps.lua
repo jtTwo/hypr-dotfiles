@@ -10,7 +10,8 @@ local lazyterm = function()
 end
 map("n", "<C-ñ>", lazyterm, { desc = "Terminal (Root Dir)" })
 map("t", "<C-ñ>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-map("t", "<C-l>","<C-u>clear<cr><C-y>", { desc = "Clear the terminal"})
+-- map("t", "<C-l>","<C-u>clear<cr><C-y>", { desc = "Clear the terminal"})
+map("t", "<C-l>","<C-l>", { desc = "Clear the terminal"})
 
 -- buffers
 map("n", "<S-w>", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
