@@ -2,11 +2,6 @@
 // import notifications from ""
 import notificationColumn from "widgets/notificationsBindings"
 
-
-const notificationWidget = Widget.Calendar({
-
-})
-
 const calendarWidget = Widget.Box({
   children: [
     Widget.Calendar({

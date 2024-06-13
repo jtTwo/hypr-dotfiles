@@ -71,7 +71,7 @@ const notification = (Notification: Notification) => Widget.Box({
             Widget.Button({
               child: Widget.Icon("window-close-symbolic"),
               on_clicked: () => {
-                Utils.timeout(50, () => Notification.close())
+                Utils.timeout(500, () => Notification.close())
                 // Notification.close
               }
             }),
@@ -86,6 +86,24 @@ const notification = (Notification: Notification) => Widget.Box({
     }),
   ]
 })
+// animates the notification widget
+const animateNotification = (_notification: Notification) => Widget.Revealer({
+  name: `animationN ${_notification.id}`,
+  // revealChild: true,
+  transition: "slide_down",
+  transitionDuration: 1000,
+  child: notification(_notification),
+  setup: (self) => Utils.timeout(_notification.id * 50, () => {
+
+    console.log("animation timeout" + _notification.id + _notification.id * 50)
+    if (!self.is_destroyed)
+      self.reveal_child = true;
+  })
+})
+//   .hook(notifications, self => {
+//   if (self.isDestroyed)
+//     self.revealChild = false
+// }, "changed")
 // console.log(Array.from(notifications.notifications))
 
 //*** notification list with bindings
@@ -113,10 +131,40 @@ const notification = (Notification: Notification) => Widget.Box({
 //   }
 // })
 
-const notificationList3 = Widget.Box({ vertical: true }).hook(notifications, (self) => {
-  self.children = notifications.notifications.map(_notification => notification(_notification))
-  console.log(self.children.length, notifications.notifications.length)
-},)
+const notificationList3 = () => {
+  // get the id of the notification and map it in a single object like {id, animateNotifcation} which the object will have its proper id assigned to it
+  // the :Map<....> is typescript notation that specifies what the map will contain
+  const map: Map<number, ReturnType<typeof animateNotification>> = new Map
+  const widgetBox = Widget.Box({
+    name: "parent box",
+    vertical: true,
+    children: notifications.notifications.map(_notification => {
+      const _animateNotification = animateNotification(_notification)
+      map.set(_notification.id, _animateNotification)
+      return _animateNotification
+    })
+  })
+
+  return widgetBox
+    .hook(notifications, (self, id) => {
+      // at inizializing the hook the id is undefined therefore is deleted afterwards,
+      // this condition will not map the undefined stuff
+      if (id !== undefined) {
+        console.log(self.children.length, notifications.notifications.length, id)
+        // the getNotificaiton(id ) will return the object notification with the id that triggered the hook that indicates a new notification has been notified with this id 
+        const _notification = notifications.getNotification(id)
+        const _animateNotification = animateNotification(_notification)
+        map.set(id, _animateNotification)
+        self.children = [_animateNotification, ...self.children]
+        // self.children = notifications.notifications.map(_notification => animateNotification(_notification))
+        // const lid = notifications.notifications.map(_n => _n.id)
+      }
+    }, "notified")
+    .hook(notifications, (self, id: number) => {
+      console.log(self.name, id)
+    }, "closed")
+}
+
 
 //hook expample
 const { speaker } = await Service.import("audio")
@@ -157,7 +205,7 @@ const notificationColumn = Widget.Box({
   children: [
     header,
     batteryPercent,
-    notificationList3,
+    notificationList3(),
   ]
 })
 
