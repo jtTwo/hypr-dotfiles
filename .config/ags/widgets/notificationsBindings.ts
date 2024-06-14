@@ -91,10 +91,11 @@ const notification = (Notification: Notification) => Widget.Box({
 const animateNotification = (_notification: Notification) => Widget.Revealer({
   name: `animationN ${_notification.id}`,
   // revealChild: true,
-  transition: "slide_down",
-  // transitionDuration: 500,
+  transition: "crossfade",
+  transitionDuration: 200,
   child: notification(_notification),
-  setup: (self) => Utils.timeout(_notification.id * 50, () => {
+  // setup: self => Utils.timeout(200, () => {
+  setup: (self) => Utils.timeout((_notification.id <= 1) ? 200 : _notification.id * 200, () => {
 
     console.log("animation timeout" + _notification.id + _notification.id * 50)
     if (!self.is_destroyed)
@@ -153,7 +154,7 @@ const notificationList3 = () => {
       // at inizializing the hook the id is undefined therefore is deleted afterwards,
       // this condition will not map the undefined stuff
       if (id !== undefined) {
-        console.log(self.children.length, notifications.notifications.length, id)
+        // console.log(self.children.length, notifications.notifications.length, id)
 
         // the getNotificaiton(id ) will return the object notification with the id that triggered the hook that indicates a new notification has been notified with this id 
         // the !at the end means the value cannot return undefined
@@ -163,6 +164,7 @@ const notificationList3 = () => {
 
         // add the new notification to the start of the array and then the previous children
         self.children = [_animateNotification, ...self.children]
+        notifications.notifications.map(_notification => console.log(`${_notification.id} , ${map.get(_notification.id).name!}`))
         // self.children = notifications.notifications.map(_notification => animateNotification(_notification))
         // const lid = notifications.notifications.map(_n => _n.id)
       }
@@ -171,8 +173,10 @@ const notificationList3 = () => {
       console.log(self.name, id)
       if (id !== undefined) {
         const _animateNotification = map.get(id)!
+        // _animateNotification.transition = "slide_right"
+        // _animateNotification.transition_duration = 700
         _animateNotification.reveal_child = false
-        Utils.timeout(1000, () => {
+        Utils.timeout(500, () => {
           _animateNotification.destroy()
           map.delete(id)
         })
@@ -180,6 +184,15 @@ const notificationList3 = () => {
     }, "closed")
 }
 
+//*** when the notification box is empty this is the place holder
+
+const emptyPlaceHolder = Widget.Box({
+  children: [
+    Widget.Label({
+      label: "Your imbox is empty!"
+    })
+  ]
+})
 
 //hook expample
 const { speaker } = await Service.import("audio")
@@ -220,7 +233,15 @@ const notificationColumn = Widget.Box({
   children: [
     header,
     batteryPercent,
-    notificationList3(),
+    Widget.Scrollable({
+      vexpand: true,
+      child: Widget.Box({
+        children: [
+          notificationList3(),
+          emptyPlaceHolder,
+        ]
+      })
+    }),
   ]
 })
 
