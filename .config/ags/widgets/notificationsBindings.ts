@@ -154,6 +154,17 @@ const notificationList3 = () => {
       // at inizializing the hook the id is undefined therefore is deleted afterwards,
       // this condition will not map the undefined stuff
       if (id !== undefined) {
+        //avoid inizializing duplicates and renew the existing notification
+        if (map.has(id)) {
+          const _animateNotification = map.get(id)
+          if (_animateNotification) {
+            _animateNotification.reveal_child = false
+            Utils.timeout(1000, () => {
+              _animateNotification.destroy()
+              map.delete(id)
+            })
+          }
+        }
         // console.log(self.children.length, notifications.notifications.length, id)
 
         // the getNotificaiton(id ) will return the object notification with the id that triggered the hook that indicates a new notification has been notified with this id 
@@ -187,6 +198,7 @@ const notificationList3 = () => {
 //*** when the notification box is empty this is the place holder
 
 const emptyPlaceHolder = Widget.Box({
+  visible: notificationArray.as(n => n.length === 0),
   children: [
     Widget.Label({
       label: "Your imbox is empty!"
@@ -234,6 +246,7 @@ const notificationColumn = Widget.Box({
     header,
     batteryPercent,
     Widget.Scrollable({
+      hscroll: "never",
       vexpand: true,
       child: Widget.Box({
         children: [
