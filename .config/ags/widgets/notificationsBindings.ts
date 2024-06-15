@@ -9,7 +9,7 @@ const notifications = await Service.import("notifications")
 import { type Notification } from "types/service/notifications"
 
 //function that returns a notifications Array from the notifications service import
-const notificationArray = notifications.bind("notifications")
+const notificationArrayBind = notifications.bind("notifications")
 
 // function to generate icons to the notification.notification[n] to return proper icon with a box widget
 function NotificationIcon({ app_entry, app_icon, image }: Notification) {
@@ -198,7 +198,7 @@ const notificationList3 = () => {
 //*** when the notification box is empty this is the place holder
 
 const emptyPlaceHolder = Widget.Box({
-  visible: notificationArray.as(n => n.length === 0),
+  visible: notificationArrayBind.as(n => n.length === 0),
   children: [
     Widget.Label({
       label: "Your imbox is empty!"
@@ -219,12 +219,12 @@ const batteryPercent = Widget.Label().hook(speaker, self => {
 const clearNotificationsButton = Widget.Button({
   on_clicked: notifications.clear,
   //disable if the array is empty
-  sensitive: notificationArray.as(n => n.length > 0 ? true : false),
+  sensitive: notificationArrayBind.as(n => n.length > 0 ? true : false),
   child: Widget.Box({
     children: [
       Widget.Label("Clear "),
       Widget.Label({
-        label: notificationArray.as(n => (n.length > 0) ? "󰩹" : "󰩺")
+        label: notificationArrayBind.as(n => (n.length > 0) ? "󰩹" : "󰩺")
       }),
       // using the widget icons 
       // Widget.Icon({ icon: notificationArray.as(n => (n.length > 0) ? "user-trashonti-full-symbolic" : "user-trash-symbolic") })
@@ -234,7 +234,7 @@ const clearNotificationsButton = Widget.Button({
 
 const header = Widget.Box({
   children: [
-    Widget.Label({ label: notificationArray.as(n => `Notifications ${n.length}`) }),
+    Widget.Label({ label: notificationArrayBind.as(n => `Notifications ${n.length}`) }),
     clearNotificationsButton,
   ]
 })
@@ -249,6 +249,7 @@ const notificationColumn = Widget.Box({
       hscroll: "never",
       vexpand: true,
       child: Widget.Box({
+        vertical: true,
         children: [
           notificationList3(),
           emptyPlaceHolder,
