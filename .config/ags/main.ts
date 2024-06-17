@@ -1,4 +1,4 @@
-import { windowCalendar } from "./widgets/calendar"
+import { setupDashboard } from "./widgets/calendar"
 import { time } from "lib/variables"
 
 // Notification generator code 
@@ -32,5 +32,9 @@ const Bar = (monitor: number) => Widget.Window({
 });
 
 App.config({
-  windows: [Bar(0), windowCalendar],
+  onConfigParsed: () => {
+    setupDashboard()
+  },
+
+  windows: [Bar(0)],
 });

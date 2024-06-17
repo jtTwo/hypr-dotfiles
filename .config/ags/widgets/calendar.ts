@@ -1,6 +1,6 @@
 // import { Media } from "./Media.js"
 // import notifications from ""
-import notificationColumn from "widgets/notificationsBindings"
+import notificationColumn from "widgets/notificationColumn"
 
 const calendarWidget = Widget.Box({
   children: [
@@ -27,4 +27,7 @@ const windowCalendar = Widget.Window({
   child: container,
 })
 
-export { windowCalendar }
+// setup the dashboard window to add it to the ags interface
+export function setupDashboard() {
+  App.addWindow(windowCalendar)
+}

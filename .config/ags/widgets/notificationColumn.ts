@@ -1,6 +1,6 @@
 // import { Notification } from "types/service/notifications"
 
-import { timestamp } from "lib/variables"
+import { timestamp, time } from "lib/variables"
 
 const notifications = await Service.import("notifications")
 // import icons from "lib/icons"
@@ -39,9 +39,7 @@ function NotificationIcon({ app_entry, app_icon, image }: Notification) {
 //   children:
 //     notifications.bind("notifications").as(n => {
 //       // console.log(NotificationIcon(n[0]))
-//       // NotificationIcon(n[0]) 
-//       // console.log(notifications)
-//       const icons = n.map(notification => NotificationIcon(notification))
+//       // NotificationIcon(n[0]) // console.log(notifications) const icons = n.map(notification => NotificationIcon(notification))
 //       // console.log(typeof (icons))
 //       return icons
 //       // return Widget.Box({ child: NotificationIcon(n[0]) })
@@ -92,7 +90,7 @@ const notification = (Notification: Notification) => Widget.Box({
 const animateNotification = (_notification: Notification) => Widget.Revealer({
   name: `animationN ${_notification.id}`,
   // revealChild: true,
-  transition: "crossfade",
+  transition: "slide_down",
   transitionDuration: 200,
   child: notification(_notification),
   // setup: self => Utils.timeout(200, () => {
@@ -103,42 +101,21 @@ const animateNotification = (_notification: Notification) => Widget.Revealer({
       self.reveal_child = true;
   })
 })
-//   .hook(notifications, self => {
-//   if (self.isDestroyed)
-//     self.revealChild = false
-// }, "changed")
-// console.log(Array.from(notifications.notifications))
 
-//*** notification list with bindings
-
-// const notificationList = Widget.Box({
-//   vertical: true,
-//   children:
-//     notifications.bind("notifications").as(n => {
-//       // console.log(NotificationIcon(n[0]))
-//       // NotificationIcon(n[0]) 
-//       // return Widget.Box({ child: NotificationIcon(n[0]) })
-//       // console.log(notifications)
-//
-//       const notifications = n.map(_notification => notification(_notification))
-//       return notifications
-//     }),
-// })
-
-// const notificationList2 = Widget.Box({
-//   vertical: true,
-//   setup: (self) => {
-//     self.hook(notifications, (self) => {
-//       self.children = notifications.notifications.map(_notification => notification(_notification))
-//     },)
-//   }
-// })
+//*** notification list
 
 // this list works with two different signals on the hooks
-const notificationList3 = () => {
+const notificationList = () => {
   // get the id of the notification and map it in a single object like {id, animateNotifcation} which the object will have its proper id assigned to it
   // the :Map<....> is typescript notation that specifies what the map will contain
   const map: Map<number, ReturnType<typeof animateNotification>> = new Map
+  // function invertNoficationOrder() {
+  //   for (let i = notifications.notifications.length;i > 0; i--)
+  //     let nArray = []
+  //     nArray.push(notifications.notifications)
+  //   return 0
+  // }
+
 
   const widgetBox = Widget.Box({
     name: "parent box",
@@ -147,7 +124,7 @@ const notificationList3 = () => {
       const _animateNotification = animateNotification(_notification)
       map.set(_notification.id, _animateNotification)
       return _animateNotification
-    })
+    }).reverse()
   })
 
   return widgetBox
@@ -176,7 +153,7 @@ const notificationList3 = () => {
 
         // add the new notification to the start of the array and then the previous children
         self.children = [_animateNotification, ...self.children]
-        notifications.notifications.map(_notification => console.log(`${_notification.id} , ${map.get(_notification.id).name!}`))
+        // notifications.notifications.map(_notification => console.log(`${_notification.id} , ${map.get(_notification.id).name}`)!)
         // self.children = notifications.notifications.map(_notification => animateNotification(_notification))
         // const lid = notifications.notifications.map(_n => _n.id)
       }
@@ -252,7 +229,7 @@ const notificationColumn = Widget.Box({
       child: Widget.Box({
         vertical: true,
         children: [
-          notificationList3(),
+          notificationList(),
           emptyPlaceHolder,
         ]
       })
