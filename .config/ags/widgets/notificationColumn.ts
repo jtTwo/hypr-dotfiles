@@ -78,6 +78,7 @@ const notification = (Notification: Notification) => Widget.Box({
         }),
         // description content
         Widget.Label({
+          wrap: true,
           // maxWidthChars: 24,
           label: Notification.body.trim(),
         })
@@ -177,7 +178,14 @@ const notificationList = () => {
 
 const emptyPlaceHolder = Widget.Box({
   visible: notificationArrayBind.as(n => n.length === 0),
+  vertical: true,
+  vexpand: true,
+  vpack: "center",
+  hpack: "center",
   children: [
+    Widget.Icon({
+      icon: "notifications-disabled-symbolic"
+    }),
     Widget.Label({
       label: "Your imbox is empty!"
     })
