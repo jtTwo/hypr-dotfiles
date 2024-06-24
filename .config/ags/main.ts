@@ -1,6 +1,8 @@
 import { setupDashboard } from "./widgets/calendar"
 import { time } from "lib/variables"
 
+import "style/style"
+
 // Notification generator code 
 
 for (let i = 0; i < 2; i++)
