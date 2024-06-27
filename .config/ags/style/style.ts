@@ -1,6 +1,19 @@
 import { dependencies, bash } from "lib/utils"
+import defaults from "defaults"
 
 const TMP = "/tmp/myconfig"
+
+const {
+  padding,
+  radious,
+} = defaults.theme
+
+const sass_var = (name: string, value: number | string) => `$${name}: ${value}`
+
+const sass_vars = () => [
+  sass_var("padding", `${padding}pt`),
+  sass_var("radious", `${radious}pt`),
+]
 
 async function resetCss() {
   if (!dependencies("sass", "fd")) {
@@ -9,7 +22,10 @@ async function resetCss() {
   }
 
   try {
-    // const variablesFromDefaults_dir = `${TMP}/variables.sass`
+    const variablesFromDefaults_path = `${TMP}/variables.sass`
+    //writing file the variables from sass_variables const
+    await Utils.writeFile(sass_vars().join("\n"), variablesFromDefaults_path)
+
     const sass_file_path = `${TMP}/styles.sass`
     const css_file_path = `${TMP}/styles.css`
 
@@ -17,10 +33,9 @@ async function resetCss() {
 
     // file paths to array with regex
     // const arrayOfSassPaths = get_files_paths.split(/\s+/)
+    const arrayOfSassPaths = [variablesFromDefaults_path, ...get_files_paths.split("\n")]
 
-    const arrayOfSassPaths = get_files_paths.split("\n")
-
-    const import_sass = arrayOfSassPaths.map(file_path => `@use '${file_path}'`)
+    const import_sass = arrayOfSassPaths.map(file_path => `@import '${file_path}'`)
 
     await Utils.writeFile(import_sass.join("\n"), sass_file_path)
     await bash(`sass ${sass_file_path} ${css_file_path}`)
