@@ -219,6 +219,7 @@ const clearNotificationsButton = Widget.Button({
 })
 
 const header = Widget.Box({
+  class_name: "header",
   children: [
     Widget.Label({ label: notificationArrayBind.as(n => `Notifications ${n.length}`) }),
     clearNotificationsButton,
@@ -227,6 +228,7 @@ const header = Widget.Box({
 
 //*** notifcationList Object to unify the notifications and headers and clear button
 const notificationColumn = Widget.Box({
+  class_name: "notifications",
   vertical: true,
   children: [
     header,

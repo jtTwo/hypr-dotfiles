@@ -10,6 +10,7 @@ const calendarWidget = Widget.Box({
   ]
 })
 const container = Widget.Box({
+  class_name: "dashboard",
   vertical: true,
   children: [
     notificationColumn(),
@@ -20,7 +21,7 @@ const container = Widget.Box({
   ],
 })
 
-const windowCalendar = Widget.Window({
+const dashboard = Widget.Window({
   margins: [12],
   name: "dashboard",
   anchor: ["top", "right", "bottom"],
@@ -29,5 +30,5 @@ const windowCalendar = Widget.Window({
 
 // setup the dashboard window to add it to the ags interface
 export function setupDashboard() {
-  App.addWindow(windowCalendar)
+  App.addWindow(dashboard)
 }
