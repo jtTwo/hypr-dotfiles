@@ -5,14 +5,14 @@ const TMP = "/tmp/myconfig"
 
 const {
   padding,
-  radious,
+  radius,
 } = defaults.theme
 
 const sass_var = (name: string, value: number | string) => `$${name}: ${value}`
 
 const sass_vars = () => [
   sass_var("padding", `${padding}pt`),
-  sass_var("radious", `${radious}pt`),
+  sass_var("radius", `${radius}pt`),
 ]
 
 async function resetCss() {

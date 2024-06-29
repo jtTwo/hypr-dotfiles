@@ -3,7 +3,7 @@ const defaults = {
     padding: 8,
     spacing: 12,
     margin: 9,
-    radious: 11,
+    radius: 11,
   }
 }
 
