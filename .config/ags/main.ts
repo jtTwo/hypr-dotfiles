@@ -5,7 +5,7 @@ import "style/style_sass_use"
 
 // Notification generator code 
 
-for (let i = 0; i < 2; i++)
+for (let i = 0; i < 1; i++)
   Utils.timeout(100, () => Utils.notify({
     summary: "NotificationPopup Ex",
     iconName: "user-trash-full-symbolic",

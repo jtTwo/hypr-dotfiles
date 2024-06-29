@@ -1,2 +1,14 @@
-@mixin button
-  border-radius: $radius
+@mixin button($radius: $radius)
+  all: unset
+  color: green
+  background-color: transparent
+  border-radius: 20px
+  margin: 5pt
+  
+  &:disabled 
+    color: red
+    background-color: red
+    border-radius: 0
+
+  // label
+  //   background-color: green
