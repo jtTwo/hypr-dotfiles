@@ -221,7 +221,11 @@ const clearNotificationsButton = Widget.Button({
 const header = Widget.Box({
   class_name: "header",
   children: [
-    Widget.Label({ label: notificationArrayBind.as(n => `Notifications ${n.length}`) }),
+    Widget.Label({
+      hexpand: true,
+      hpack: "start",
+      label: notificationArrayBind.as(n => `Notifications ${n.length}`)
+    }),
     clearNotificationsButton,
   ]
 })
