@@ -1,7 +1,7 @@
 import { setupDashboard } from "./widgets/calendar"
 import { time } from "lib/variables"
 
-import "style/style"
+import "style/style_sass_use"
 
 // Notification generator code 
 
