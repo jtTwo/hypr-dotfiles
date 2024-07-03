@@ -1,10 +1,21 @@
 const defaults = {
   theme: {
+    background: "#EFF1F5",
+    foreground: "#000000",
+    primary: "#51A4E7",
+
     padding: 8,
     spacing: 12,
     margin: 9,
-    radius: 11,
-  }
+    opacity: 96,
+
+    border: {
+      radius: 11,
+      width: 0,
+    }
+  },
+
+  transition: 200,
 }
 
 export default defaults

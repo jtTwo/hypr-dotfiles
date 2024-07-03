@@ -6,11 +6,19 @@ const TMP = "/tmp/myconfig"
 const {
   padding,
   radius,
+
+  background,
+  foreground,
+  primary,
 } = defaults.theme
 
 const sass_var = (name: string, value: number | string) => `$${name}: ${value}`
 
 const sass_vars = () => [
+  sass_var("background", background),
+  sass_var("foreground", foreground),
+  sass_var("primary", primary),
+
   sass_var("padding", `${padding}pt`),
   sass_var("radius", `${radius}pt`),
 ]

@@ -5,16 +5,34 @@ const TMP = "/tmp/myconfig"
 
 const {
   padding,
-  radius,
   spacing,
+  opacity,
+
+  background,
+  foreground,
+  primary,
+
+  border,
 } = defaults.theme
 
 const sass_var = (name: string, value: number | string) => `$${name}: ${value}`
 
 const sass_vars = () => [
+  sass_var("background", background),
+  sass_var("hover-background", `transparentize(${foreground}, ${opacity * .9} / 100)`),
+
+  sass_var("foreground", foreground),
+  sass_var("primary", primary),
+  sass_var("widget-background", `transparentize(${foreground}, ${opacity} / 100)`),
+
   sass_var("padding", `${padding}pt`),
-  sass_var("radius", `${radius}pt`),
-  sass_var("spacing", `${spacing}pt`)
+  sass_var("spacing", `${spacing}pt`),
+  sass_var("radius", `${border.radius}px`),
+
+  sass_var("border-radius", `${border.radius}px`),
+  sass_var("border-width", `${border.width}px`),
+
+  sass_var("transition", `${defaults.transition}ms`),
 ]
 
 async function resetCss() {
