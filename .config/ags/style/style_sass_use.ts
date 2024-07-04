@@ -19,11 +19,12 @@ const sass_var = (name: string, value: number | string) => `$${name}: ${value}`
 
 const sass_vars = () => [
   sass_var("background", background),
+  // TODO: review on catpuccin scheme, hover-background based on foreground calculation
   sass_var("hover-background", `transparentize(${foreground}, ${opacity * .9} / 100)`),
+  sass_var("widget-background", `transparentize(${foreground}, ${opacity} / 100)`),
 
   sass_var("foreground", foreground),
   sass_var("primary", primary),
-  sass_var("widget-background", `transparentize(${foreground}, ${opacity} / 100)`),
 
   sass_var("padding", `${padding}pt`),
   sass_var("spacing", `${spacing}pt`),

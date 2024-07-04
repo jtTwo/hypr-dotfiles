@@ -1,27 +1,42 @@
 // main mixin
-@mixin button($radius: $radius, $reactive: true)
+@mixin button($radius: $radius, $reactive: true, $flat: false, $focusable: true)
   all: unset
 
   color: $foreground
-  background-color: $widget-background
 
   border-radius: $border-radius
-  margin: 5pt
 
-  box-shadow: inset 0 0 0 $border-width $foreground
+  //  animation duration transition: $transition
 
-  //animation duration
-  transition: $transition
-  
-  &:disabled 
-    // color: red
+  @if $flat
     background-color: transparent
     box-shadow: none
+  @else
+    background-color: $widget-background
+    box-shadow: inset 0 0 0 $border-width $foreground
+  
+  &:disabled 
+    background-color: transparent
+    box-shadow: none
+    color: transparentize($foreground, 0.7)
 
+  // TODO: check on quicksettins, $reactive var if necesary 
   @if $reactive
     &:hover
       background-color: $hover-background
-
       box-shadow: inset 0 0 0 $border-width $foreground
+
+    // TODO: check on quicksettins, if checked or active property needed
+    &:active
+    &:checked
+        background-color: red
+        color: red
+
+    // TODO: check on quicksettins, what this property does on active or checked buttons
+    // &:hover
+    //   box-shadow: inset 0 0 0 $border-width $border-color,
+    //   inset 0 0 0 99px $hover-bg;
+
+
 
 
