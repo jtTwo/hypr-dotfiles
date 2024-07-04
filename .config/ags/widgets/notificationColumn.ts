@@ -238,6 +238,7 @@ const notificationColumn = Widget.Box({
     header,
     batteryPercent,
     Widget.Scrollable({
+      class_name: "scrollable",
       hscroll: "never",
       vexpand: true,
       child: Widget.Box({
