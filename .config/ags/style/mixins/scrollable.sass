@@ -1,0 +1,41 @@
+
+@mixin scrollable
+  // TODO: on finishing dashboard, check with the original code
+  // highlights if theres more content on the scrollable
+  @if $shadows
+    undershoot
+      &.top
+        background: linear-gradient(to bottom, $shadow-color, transparent, transparent, transparent, transparent, transparent)
+
+      &.bottom
+        background: linear-gradient(to top, $shadow-color, transparent, transparent, transparent, transparent, transparent)
+
+  scrollbar
+    &,
+    *
+      all: unset
+
+    &.vertical
+      background-color: rgba($background, .3)
+
+      transition: $transition
+
+      slider
+        background-color: rgba($foreground, .5)
+
+        border-radius: $radius
+        width: .4em
+        height: 2em
+        margin: .5em 0
+
+        transition: $transition
+
+      &:hover
+        background-color: rgba($background, .7)
+        
+        slider
+          background-color: rgba($foreground, .7)
+          min-width: .6em
+          margin: .6em .3em
+      
+    

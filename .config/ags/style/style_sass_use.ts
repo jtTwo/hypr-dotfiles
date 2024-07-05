@@ -7,6 +7,7 @@ const {
   padding,
   spacing,
   opacity,
+  shadows,
 
   background,
   foreground,
@@ -25,6 +26,9 @@ const sass_vars = () => [
 
   sass_var("foreground", foreground),
   sass_var("primary", primary),
+
+  sass_var("shadows", `${shadows}`),
+  sass_var("shadow-color", `rgba(0,0,255,.6)`),
 
   sass_var("padding", `${padding}pt`),
   sass_var("spacing", `${spacing}pt`),

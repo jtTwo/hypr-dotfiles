@@ -9,6 +9,8 @@ const defaults = {
     margin: 9,
     opacity: 96,
 
+    shadows: true,
+
     border: {
       radius: 11,
       width: 0,
