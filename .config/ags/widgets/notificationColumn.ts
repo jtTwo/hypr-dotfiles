@@ -241,7 +241,9 @@ const notificationColumn = Widget.Box({
       class_name: "scrollable",
       hscroll: "never",
       vexpand: true,
+
       child: Widget.Box({
+        class_name: "notification-list-container",
         vertical: true,
         children: [
           notificationList(),
