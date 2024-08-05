@@ -3,9 +3,12 @@
 import notificationColumn from "widgets/notificationColumn"
 
 const calendarWidget = Widget.Box({
+  className: "calendar-container",
   children: [
     Widget.Calendar({
       className: "calendar",
+      hexpand: true,
+      hpack: "center",
     }),
   ]
 })
