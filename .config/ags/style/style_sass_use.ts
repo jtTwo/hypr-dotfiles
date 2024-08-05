@@ -36,6 +36,8 @@ const sass_vars = () => [
 
   sass_var("border-radius", `${border.radius}px`),
   sass_var("border-width", `${border.width}px`),
+  sass_var("border-color", `transparentize(${foreground}, ${border.opacity} / 100)`),
+  sass_var("border", `${border.width} solid $border-color`),
 
   sass_var("transition", `${defaults.transition}ms`),
 ]

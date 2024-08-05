@@ -15,10 +15,13 @@ const notificationArrayBind = notifications.bind("notifications")
 function NotificationIcon({ app_entry, app_icon, image }: Notification) {
   if (image) {
     return Widget.Box({
+      class_name: "icon img",
       css: `background-image: url("${image}");`
-        + "background-size: contain;"
+        + "background-size: cover;"
         + "background-repeat: no-repeat;"
-        + "background-position: center;",
+        + "background-position: center;"
+        + "min-width: 78px;"
+        + "min-height: 78px;",
     })
   }
 
@@ -30,7 +33,12 @@ function NotificationIcon({ app_entry, app_icon, image }: Notification) {
     icon = app_entry
 
   return Widget.Box({
-    child: Widget.Icon(icon),
+    class_name: "icon",
+    child: Widget.Icon({
+      icon: icon,
+      hpack: "center",
+    }
+    ),
   })
 }
 
@@ -50,8 +58,8 @@ function NotificationIcon({ app_entry, app_icon, image }: Notification) {
 
 const notification = (Notification: Notification) => Widget.Box({
   // NAME identifiers for any mapped widget (just debugging )
+  class_name: "notification",
   name: `my id ${Notification.id}`,
-  // className: `my class ${Notification.id}`,
   children: [
     NotificationIcon(Notification),
     Widget.Box({
@@ -61,12 +69,15 @@ const notification = (Notification: Notification) => Widget.Box({
         Widget.Box({
           children: [
             Widget.Label({
+              class_name: "title",
               label: Notification.summary.trim() + " id:" + Notification.id + "  ",
             }),
             Widget.Label({
+              class_name: "time",
               label: timestamp(Notification.time)
             }),
             Widget.Button({
+              class_name: "close-button",
               child: Widget.Icon("window-close-symbolic"),
               on_clicked: () => {
                 Notification.close()
@@ -78,6 +89,7 @@ const notification = (Notification: Notification) => Widget.Box({
         }),
         // description content
         Widget.Label({
+          class_name: "description",
           wrap: true,
           // maxWidthChars: 24,
           label: Notification.body.trim(),

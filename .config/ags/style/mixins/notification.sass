@@ -1,0 +1,36 @@
+@mixin notification
+
+  .icon
+    border-radius: $radius
+    margin-right: $spacing
+
+    &.img
+      border: $border
+
+  .title
+    margin-right: $spacing
+
+  .time
+    // TODO: on dashboard finished, check color schemes that contain a color text like gray or secondary color for text
+    color: rgba($foreground, .8)
+
+  .description
+    // TODO: on dashboard finished, check color schemes that contain a color text like gray or secondary color for text
+    color: rgba($foreground, .8)
+
+    font-size: .9em
+
+  button.close-button
+    @include button($flat: true)
+
+    margin-left: $spacing / 2
+    border-radius: $border-radius * .8
+    min-width: 1.2em
+    min-height: 1.2em
+
+    //  TODO: on dashboard finished, compare with default configs
+    &:hover
+      background-color: rgba(red, 0.6)
+    &:active
+      background-color: red
+

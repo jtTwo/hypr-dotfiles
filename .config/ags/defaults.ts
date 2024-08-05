@@ -14,6 +14,7 @@ const defaults = {
     border: {
       radius: 11,
       width: 0,
+      opacity: 94,
     }
   },
 
