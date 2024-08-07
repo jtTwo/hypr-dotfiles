@@ -1,0 +1,33 @@
+window#dashboard .dashboard
+  .notifications
+
+    .dashboard
+      background-color: black
+
+    .header
+      background-color: $background
+      margin-bottom: $spacing
+      
+      label
+        margin-left: $radius * .5
+
+      button
+        @include button
+        // TODO: on finishing dashboard, check if other padding properties are the same
+        padding: $padding
+
+    .scrollable
+      @include scrollable
+
+      .notification-list-container
+        margin-right: $spacing
+
+        .notification
+          @include notification
+          @include widget
+          padding: $padding
+          margin-bottom: $spacing
+
+
+  .calendar-container
+    @include calendar
