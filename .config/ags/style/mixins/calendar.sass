@@ -1,6 +1,29 @@
 @mixin calendar
-  all: unset
   background-color: red
+  @include widget
+  padding: $padding * 2 $padding * 2  0
 
-  &.button
-    @include button($flat: true)
+  .calendar 
+    all: unset
+
+    &.header
+      color: rgba($foreground, .5)
+      background-color: transparent
+      border: none
+
+    &.button
+      @include button($flat: true)
+
+    &.highlight
+      color: rgba($primary, .6)
+
+    &:indeterminate
+      color: rgba($foreground, .3)
+
+    &:selected
+      border-radius: $radius * .3
+      box-shadow: inset 0 -8px 0 0 rgba($primary, .5), inset 0 0 0 1px rgba($primary, 1)
+      color: $primary
+
+    font-size: 1.1em
+    padding: .2em
