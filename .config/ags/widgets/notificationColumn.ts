@@ -74,7 +74,7 @@ const notification = (Notification: Notification) => Widget.Box({
               // justification: "left",
               // truncate: "end",
               xalign: 0,
-              label: Notification.summary.trim() + " id:" + Notification.id + "  ",
+              label: Notification.summary.trim() + " id:" + Notification.id,
             }),
             Widget.Label({
               class_name: "time",
