@@ -70,6 +70,10 @@ const notification = (Notification: Notification) => Widget.Box({
           children: [
             Widget.Label({
               class_name: "title",
+              hexpand: true,
+              // justification: "left",
+              // truncate: "end",
+              xalign: 0,
               label: Notification.summary.trim() + " id:" + Notification.id + "  ",
             }),
             Widget.Label({

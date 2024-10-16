@@ -5,7 +5,7 @@ const TMP = "/tmp/myconfig"
 
 const {
   padding,
-  radius,
+  border,
 
   background,
   foreground,
@@ -20,7 +20,7 @@ const sass_vars = () => [
   sass_var("primary", primary),
 
   sass_var("padding", `${padding}pt`),
-  sass_var("radius", `${radius}pt`),
+  sass_var("radius", `${border.radius}pt`),
 ]
 
 async function resetCss() {
