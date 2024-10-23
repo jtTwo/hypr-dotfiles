@@ -18,6 +18,9 @@ const defaults = {
     }
   },
 
+  window_margin: 20,
+  window_radius: 15,
+
   transition: 200,
 }
 

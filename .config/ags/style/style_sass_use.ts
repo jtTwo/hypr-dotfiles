@@ -39,6 +39,8 @@ const sass_vars = () => [
   sass_var("border-color", `transparentize(${foreground}, ${border.opacity} / 100)`),
   sass_var("border", `${border.width} solid $border-color`),
 
+  sass_var("window-margin", `${defaults.window_margin}px`),
+  sass_var("window-radius", `${defaults.window_radius}px`),
   sass_var("transition", `${defaults.transition}ms`),
 ]
 
