@@ -18,14 +18,15 @@ const container = Widget.Box({
   children: [
     notificationColumn(),
     Widget.Separator({
-      css: "margin: 20px;",
+      class_name: "separator"
+      // css: "margin: 20px;",
     }),
     calendarWidget,
   ],
 })
 
 const dashboard = Widget.Window({
-  margins: [12],
+  // margins: [12], //gives css margin space to the window 
   name: "dashboard",
   anchor: ["top", "right", "bottom"],
   child: container,

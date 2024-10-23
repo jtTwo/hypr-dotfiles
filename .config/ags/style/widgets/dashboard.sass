@@ -1,11 +1,19 @@
+window#dashboard
+  // all:unset
+  background-color: transparent
+  // background-color: red
+
 window#dashboard .dashboard
+
   .notifications
+    @include window_widget
+    margin-bottom: 0
 
     .dashboard
       background-color: black
 
     .header
-      background-color: $background
+      // background-color: $background
       margin-bottom: $spacing
       
       label
@@ -28,6 +36,11 @@ window#dashboard .dashboard
           padding: $padding
           margin-bottom: $spacing
 
+  .separator
+    // background-color: cyan
+    background-color: transparent
+    margin: 0 20px 0
 
   .calendar-container
+    @include window_widget
     @include calendar
