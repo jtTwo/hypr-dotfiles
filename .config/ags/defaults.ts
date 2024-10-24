@@ -9,6 +9,7 @@ const defaults = {
     margin: 9,
     opacity: 96,
 
+    shadow_color: "rgb(0,0,0,.5)",
     shadows: true,
 
     border: {
@@ -20,6 +21,7 @@ const defaults = {
 
   window_margin: 20,
   window_radius: 15,
+  window_border_width: 2,
 
   transition: 200,
 }
