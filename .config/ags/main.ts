@@ -1,4 +1,6 @@
 import { setupDashboard } from "./widgets/calendar"
+import { setupQuickSettings } from "./widgets/quickSettings/quickSettings"
+
 import { time } from "lib/variables"
 
 import "style/style_sass_use"
@@ -35,7 +37,8 @@ const Bar = (monitor: number) => Widget.Window({
 
 App.config({
   onConfigParsed: () => {
-    setupDashboard()
+    // setupDashboard()
+    setupQuickSettings()
   },
 
   windows: [Bar(0)],
