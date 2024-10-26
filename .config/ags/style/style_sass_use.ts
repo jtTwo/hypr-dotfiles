@@ -8,6 +8,7 @@ const {
   spacing,
   opacity,
   shadows,
+  error,
   shadow_color,
 
   background,
@@ -27,6 +28,7 @@ const sass_vars = () => [
 
   sass_var("foreground", foreground),
   sass_var("primary", primary),
+  sass_var("error-color", error),
 
   sass_var("shadows", `${shadows}`),
   sass_var("shadow-color", `${shadow_color}`),
@@ -42,7 +44,8 @@ const sass_vars = () => [
 
   sass_var("window-margin", `${defaults.window_margin}px`),
   sass_var("window-radius", `${defaults.window_radius}px`),
-  sass_var("window-border-color", `transparentize(${foreground}, ${border.opacity} / 100)`),
+  // sass_var("window-border-color", `transparentize(${foreground}, ${border.opacity / 100} )`),
+  sass_var("window-border-color", `rgba(${foreground}, ${border.opacity / 100} )`),
   sass_var("window-border-width", `${defaults.window_border_width}px`),
   sass_var("transition", `${defaults.transition}ms`),
 ]
