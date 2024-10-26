@@ -5,10 +5,10 @@
   @if $shadows
     undershoot
       &.top
-        background: linear-gradient(to bottom, $shadow-color, transparent, transparent, transparent, transparent, transparent)
+        background: linear-gradient(to bottom, transparentize($primary, .6), transparent, transparent, transparent, transparent, transparent)
 
       &.bottom
-        background: linear-gradient(to top, $shadow-color, transparent, transparent, transparent, transparent, transparent)
+        background: linear-gradient(to top, transparentize($primary, .6), transparent, transparent, transparent, transparent, transparent)
 
   scrollbar
     &,

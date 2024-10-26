@@ -7,10 +7,17 @@ const defaults = {
 
     //catpuccin mocha scheme
 
-    background: "#1e1e2e",
-    foreground: "#cdd6f4",
-    primary: "#a6e3a1",
-    error: "#f38ba8",
+    // background: "#1e1e2e",
+    // foreground: "#cdd6f4",
+    // primary: "#a6e3a1",
+    // error: "#f38ba8",
+
+    //catpuccin machiato scheme
+
+    background: "#24273a",
+    foreground: "#cad3f5",
+    primary: "#a6da95",
+    error: "#ed8796",
 
     padding: 8,
     spacing: 12,
