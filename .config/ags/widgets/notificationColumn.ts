@@ -19,9 +19,9 @@ function NotificationIcon({ app_entry, app_icon, image }: Notification) {
       css: `background-image: url("${image}");`
         + "background-size: cover;"
         + "background-repeat: no-repeat;"
-        + "background-position: center;"
-        + "min-width: 78px;"
-        + "min-height: 78px;",
+        + "background-position: center;",
+        // + "min-width: 50px;" //there's already a config for this setting 
+        // + "min-height: 50px;",
     })
   }
 
@@ -36,9 +36,9 @@ function NotificationIcon({ app_entry, app_icon, image }: Notification) {
     class_name: "icon",
     child: Widget.Icon({
       icon: icon,
-      hpack: "center",
-    }
-    ),
+      size: 35,
+      hexpand: true,
+    }),
   })
 }
 
@@ -71,7 +71,7 @@ const notification = (Notification: Notification) => Widget.Box({
             Widget.Label({
               class_name: "title",
               hexpand: true,
-              // justification: "left",
+              // justificationf: "left",
               // truncate: "end",
               xalign: 0,
               label: Notification.summary.trim() + " id:" + Notification.id,
@@ -94,6 +94,7 @@ const notification = (Notification: Notification) => Widget.Box({
         // description content
         Widget.Label({
           class_name: "description",
+          xalign: 0,
           wrap: true,
           // maxWidthChars: 24,
           label: Notification.body.trim(),

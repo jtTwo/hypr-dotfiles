@@ -34,7 +34,7 @@ const defaults = {
     }
   },
 
-  window_margin: 20,
+  window_margin: 12,
   window_radius: 15,
   window_border_width: .2,
 
