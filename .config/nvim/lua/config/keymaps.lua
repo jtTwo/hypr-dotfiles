@@ -4,17 +4,21 @@
 
 local map = vim.keymap.set
 
--- floating terminal
-local lazyterm = function()
-  LazyVim.terminal(nil, { cwd = LazyVim.root() })
-end
-map("n", "<C-ñ>", lazyterm, { desc = "Terminal (Root Dir)" })
-map("t", "<C-ñ>", "<cmd>close<cr>", { desc = "Hide Terminal" })
--- map("t", "<C-l>","<C-u>clear<cr><C-y>", { desc = "Clear the terminal"})
-map("t", "<C-l>","<C-l>", { desc = "Clear the terminal"})
+-- terminal
+map("n", "<C-ñ>", function()
+  Snacks.terminal()
+end, { desc = "Terminal (Root Dir)" })
+
+map("t", "<C-ñ>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+-- map("t", "<C-l>", "<C-u>clear<cr><C-y>", { desc = "Clear the terminal" })
+-- map("t", "<C-l>", function()
+--   Snacks.terminal.colorize()
+-- end, { desc = "Clear the terminal" })
 
 -- buffers
-map("n", "<S-w>", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
+map("n", "<S-w>", function()
+  Snacks.bufdelete()
+end, { desc = "Delete Buffer" })
 
 -- windows
 map("n", "<leader>+", "<C-W>v", { desc = "Split Window Right", remap = true })
